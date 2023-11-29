@@ -21,7 +21,7 @@
   ],
   "scripts": {
     "watch": "tsc --watch",
-    "build": "tsc",
+    "build": "echo 'hello world'",
     "test": "jest --silent",
     "test-watch": "jest --watch",
     "prepublishOnly": "tsc"

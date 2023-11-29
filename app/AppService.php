@@ -18,5 +18,8 @@ class AppService extends Service
     public function boot()
     {
         // 服务启动
+        if(IS_VERCEL){
+            app()->setRuntimePath(sys_get_temp_dir().DIRECTORY_SEPARATOR);
+        }
     }
 }

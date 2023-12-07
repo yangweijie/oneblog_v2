@@ -3,19 +3,14 @@
 namespace app\controller;
 
 use app\BaseController;
+use think\facade\View;
 
-class Index extends BaseController
-{
-    public function index()
-    {
-        dump(runtime_path());
-        dump(env('DB_HOST', ''));
-        return 'hello';
-        // return '<style>*{ padding: 0; margin: 0; }</style><iframe src="https://www.thinkphp.cn/welcome?version=' . \think\facade\App::version() . '" width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>';
-    }
+class Index extends BaseController {
+	public function index() {
+		return View::fetch('index/index');
+	}
 
-    public function hello($name = 'ThinkPHP8')
-    {
-        return 'hello,' . $name;
-    }
+	public function hello($name = 'ThinkPHP8') {
+		return 'hello,' . $name;
+	}
 }

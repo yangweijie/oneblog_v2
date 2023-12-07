@@ -12,3 +12,4 @@ Thumbs.db
 /.project
 .vercel
 /node_modules/
+/runtime

@@ -19,12 +19,21 @@
             "email": "448901948@qq.com"
         }
     ],
+    "repositories": {
+        "topthink/think-multi-app": {
+            "type": "path",
+            "url": "libs/res/think-multi-app"
+        }
+    },
     "require": {
         "php": ">=8.2.0",
         "topthink/framework": "^8.0",
         "topthink/think-orm": "^3.0",
         "topthink/think-filesystem": "^2.0",
-        "topthink/think-view": "^2.0"
+        "topthink/think-view": "^2.0",
+        "topthink/think-multi-app": "dev-main",
+        "ext-curl": "*",
+        "yangweijie/thinkphp-jump": "^1.6"
     },
     "require-dev": {
         "symfony/var-dumper": ">=4.2",

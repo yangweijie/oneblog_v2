@@ -7,59 +7,6 @@ use think\facade\Db;
 use util\File;
 use util\Tree;
 
-if (!function_exists('get_front_cache')) {
-	function get_front_cache() {
-		// if (false === Cache::get('front_cache')) {
-		$single_list = Page::where('status', 1)->order('update_time DESC')->select();
-		$new_article = Document::view('cms_document', true)
-				->view("cms_column", ['name' => 'column_name'], 'cms_column.id=cms_document.cid', 'left')
-				->view("admin_user", 'username', 'admin_user.id=cms_document.uid', 'left')
-				->where(['cms_document.status' => 1])
-				->order('update_time DESC')
-				->limit(3)->select();
-		$column_model = new \app\cms\model\Column;
-		$category = $column_model->where('status = 1')->order('sort asc')->select();
-		$document_model = new Document;
-		$count = $document_model->group('cid')->where('status=1')->column('cid, count(*) as num');
-		foreach ($category as $key => $value) {
-			$category[$key]['article_num'] = isset($count[$value['id']]) ? $count[$value['id']] : 0;
-		}
-		// $cate = \app\cms\model\Column::where('status=1')->column('*', 'id');
-		$cate = Tree::config(['title' => 'name'])->toList($category);
-		$list = app\cms\model\Document::getList([], 'create_time DESC, id DESC');
-		$date = $time = [];
-		foreach ($list as $key => $value) {
-			if ($value['create_time']) {
-				$time[] = date('F Y', $value['create_time']);
-			}
-		}
-		$time = array_unique($time);
-		foreach ($time as $key => $value) {
-			$date[] = array(
-				'text' => $value,
-				'link' => sprintf('/index/archive/year/%d/month/%s',
-					date('Y', strtotime($value)),
-					date('m', strtotime($value))
-				)
-			);
-		}
-
-		$cache = array(
-			'single_list' => $single_list,
-			'new_article' => $new_article,
-			'cate' => $cate,
-			'date' => $date,
-		);
-
-		// dump($date);
-		// Cache::set('front_cache', $cache);
-		// }
-		return $cache;
-		// return Cache::get('front_cache');
-	}
-
-}
-
 // 函数库
 function base64EncodeImage ($image_file) {
     $base64_image = '';

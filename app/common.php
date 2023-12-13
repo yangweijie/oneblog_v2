@@ -1,5 +1,8 @@
 <?php
 
+use think\db\exception\DataNotFoundException;
+use think\db\exception\DbException;
+use think\db\exception\ModelNotFoundException;
 use think\facade\Db;
 use think\Container;
 use think\facade\Env;
@@ -11,15 +14,18 @@ if(!defined('DS')){
 // 应用公共文件
 
 // 加载自定义公共文件
-if (is_file( './function.php')) {
-    include_once 'function.php';
+if (is_file( __DIR__.DS.'function.php')) {
+    require_once __DIR__.DS.'function.php';
 }
 
 if (!function_exists('is_signin')) {
     /**
      * 判断是否登录
-     * @author 蔡伟明 <314013107@qq.com>
      * @return mixed
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
+     * @author 蔡伟明 <314013107@qq.com>
      */
     function is_signin()
     {
@@ -724,8 +730,8 @@ if (!function_exists('get_level_data')) {
      * @param string $pid_field 父级ID的字段名
      * @author 蔡伟明 <314013107@qq.com>
      * @return array|string|\think\Collection
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
      * @throws \think\exception\DbException
      */
     function get_level_data($table = '', $pid = 0, $pid_field = 'pid')
@@ -771,8 +777,8 @@ if (!function_exists('get_level_key_data')) {
      * @param int $level 级别
      * @author 蔡伟明 <314013107@qq.com>
      * @return array
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
      * @throws \think\exception\DbException
      */
     function get_level_key_data($table = '', $id = '', $id_field = 'id', $name_field = 'name', $pid_field = 'pid', $level = 1)
@@ -987,8 +993,8 @@ if (!function_exists('get_nickname')) {
      * @param int $uid 用户ID
      * @author 蔡伟明 <314013107@qq.com>
      * @return mixed|string 用户昵称
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
      * @throws \think\exception\DbException
      */
     function get_nickname($uid = 0)
@@ -1146,8 +1152,8 @@ if (!function_exists('parse_action')) {
      * @author huajie <banhuajie@163.com>
      * @alter 蔡伟明 <314013107@qq.com>
      * @return array|bool
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
      * @throws \think\exception\DbException
      */
     function parse_action($action, $self){
@@ -1256,8 +1262,8 @@ if (!function_exists('packet_exists')) {
      * @param string $name 数据包名
      * @author 蔡伟明 <314013107@qq.com>
      * @return bool
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
      * @throws \think\exception\DbException
      */
     function packet_exists($name = '')

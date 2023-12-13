@@ -7,7 +7,14 @@
 	},
     "routes": [
         {
-            "src": "/(css|js)/(.*)",
+            "src": "/(css|js|static|extend|min)/(.*)",
+            "dest": "public/$1/$2",
+            "has":[
+                {"type": "query", "key": "v"}
+            ]
+        },
+        {
+            "src": "/(css|js|static|extend|min)/(.*)",
             "dest": "public/$1/$2"
         },
         {

@@ -37,9 +37,7 @@ class Config
         $request_uri = $_SERVER['REQUEST_URI'];
         $script_name = $_SERVER['SCRIPT_NAME'];
         $module = explode('/', ltrim(str_ireplace($script_name, '', $request_uri), '/'))[0];
-//        app()->http->name($module);
         define('MODULE', $module);
-        // 获取入口目录
         $base_file = Request::baseFile();
         $base_dir  = substr($base_file, 0, strripos($base_file, '/') + 1);
         if(!defined('PUBLIC_PATH'))

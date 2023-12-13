@@ -100,12 +100,12 @@ class Home extends Common
     /* 文档模型列表页 */
     public function lists($page = 1, $cid = 0)
     {
-        $tag = input('get.tag', '');
+        $tag = input('tag', '');
         $map = [];
         if ($cid) {
             $map['cms_document.cid'] = $cid;
         }
-        if ($kw = input('get.kw', '', 'trim')) {
+        if ($kw = trim(request()->action())) {
             $map['cms_document.title'] = array('like', "%{$kw}%");
             $like_id                   = Db::name('cms_document_article')->where("content like '%{$kw}%'")->column('aid');
             if ($like_id) {

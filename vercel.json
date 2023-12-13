@@ -25,7 +25,6 @@
     "env": {
         "APP_NAME": "Vercel oneblog 2",
         "APP_ENV": "production",
-        "APP_DEBUG": "false",
         "APP_URL": "https://oneblog2.vercel.app",
         "VERCEL_DEMO_MODE": "true",
         "NODE_PATH": "node"

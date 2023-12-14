@@ -9,7 +9,7 @@
 
 namespace app\cms\home;
 
-use app\index\controller\Home;
+use app\index\home\Home;
 use think\facade\Db;
 use util\Tree;
 use think\facade\View;

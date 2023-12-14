@@ -9,7 +9,7 @@
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
 
-namespace app\index\controller;
+namespace app\index\home;
 
 use util\Http;
 use Symfony\Component\DomCrawler\Crawler;

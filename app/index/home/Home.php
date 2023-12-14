@@ -9,7 +9,7 @@
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
 
-namespace app\index\controller;
+namespace app\index\home;
 
 use app\cms\model\Document as DocumentModel;
 use app\common\controller\Common;

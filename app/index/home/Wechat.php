@@ -9,7 +9,7 @@
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
 
-namespace app\index\controller;
+namespace app\index\home;
 
 use EasyWeChat\Factory;
 use EasyWeChat\Message\Article;
@@ -110,13 +110,13 @@ class Wechat extends Home
 								$temp = $temppath.DS.ltrim($temp_name, $temppath).'.jpg';
 								trace($temp);
 								file_put_contents($temp, file_get_contents($picUrl));
-								$ret = \app\index\controller\Wechat::remote_upload($temp);
+								$ret = \app\index\home\Wechat::remote_upload($temp);
 								trace($ret);
 								if($ret['code'] == 0){
 									return '上传失败';
 								}
 								try {
-									\app\index\controller\Suka::rec_report($ret['id'], $temp, session('uid'));
+									\app\index\home\Suka::rec_report($ret['id'], $temp, session('uid'));
 								} catch (\Exception $e) {
 									trace($e->getMessage().PHP_EOL.$e->getTraceAsString());
 								}

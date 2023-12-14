@@ -1,5 +1,5 @@
 <?php
-namespace app\index\controller;
+namespace app\index\home;
 
 use app\common\controller\Common;
 use think\facade\Request;

@@ -7,6 +7,7 @@ use think\Db;
 use think\Env;
 use think\Event;
 use think\event\RouteLoaded;
+use think\exception\Handle;
 use think\Lang;
 use think\Log;
 use think\Middleware;
@@ -22,11 +23,9 @@ class Http extends think\Http
     protected function loadMiddleware(): void
     {
         static $middlewares;
-        if (is_file($this->app->getBasePath() . 'middleware.php')) {
-            if(!$middlewares){
-                // Change include to include_once
-                $middlewares = include_once $this->app->getBasePath() . 'middleware.php';
-            }
+        if (!$middlewares && is_file($this->app->getBasePath() . 'middleware.php')) {
+            // Change include to include_once
+            $middlewares = include_once $this->app->getBasePath() . 'middleware.php';
             $this->app->middleware->import($middlewares);
         }
     }
@@ -77,14 +76,13 @@ class App extends think\App
 
 function run()
 {
-    if(!defined('ADMIN_FILE'))
-        define('ADMIN_FILE', 'admin.php');
     static $app;
     ob_start();
-    $app = $app ?: new App();
+    $app = $app?:new App();
     $http = $app->http;
     $response = $http->run();
     $response->send();
     $http->end($response);
+    $app->offsetUnset('app');
     return ob_get_clean();
 }

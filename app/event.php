@@ -5,13 +5,8 @@ return [
     ],
 
     'listen'    => [
-        'AppInit'  => [
-
-        ],
-        'HttpRun'  => [
-            'app\\common\\listener\\Config',
-            'app\\common\\listener\\Hook',
-        ],
+        'AppInit'  => [],
+        'HttpRun'  => [],
         'HttpEnd'  => [],
         'LogLevel' => [],
         'LogWrite' => [],

@@ -18,10 +18,13 @@
             // obj["msg"] = "ajax发送的参数";
             $.ajax({
                 url: "{:url('json')}",
-                data:obj,
+                data: JSON.stringify(obj),
                 type: "POST",
-                contentType:'application/json',
                 dataType: "json",
+                // contentType:"application/json",
+                // headers: {
+                //     "Content-Type": "application/json"
+                // },
                 // false为同步，true为异步，默认为false
                 // 对于success返回，设置为false或true，似乎看不出影响
 

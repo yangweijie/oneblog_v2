@@ -33,7 +33,10 @@
         "topthink/think-filesystem": "^2.0",
         "topthink/think-view": "^2.0",
         "yangweijie/thinkphp-jump": "^1.6",
-        "joanhey/adapterman": "^0.6.1"
+        "joanhey/adapterman": "^0.6.1",
+        "spatie/ignition": "^1.11",
+        "phpoption/phpoption": "^1.9",
+        "vlucas/phpdotenv": "^5.5"
     },
     "require-dev": {
         "symfony/var-dumper": ">=4.2",

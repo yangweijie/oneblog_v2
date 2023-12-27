@@ -23,6 +23,10 @@
         "topthink/think-multi-app": {
             "type": "path",
             "url": "libs/res/think-multi-app"
+        },
+        "debugbar": {
+            "type": "path",
+            "url": "libs/res/think-debugbar"
         }
     },
     "require": {
@@ -36,7 +40,8 @@
         "joanhey/adapterman": "^0.6.1",
         "spatie/ignition": "^1.11",
         "phpoption/phpoption": "^1.9",
-        "vlucas/phpdotenv": "^5.5"
+        "vlucas/phpdotenv": "^5.5",
+        "yangweijie/debugbar": "dev-main"
     },
     "require-dev": {
         "symfony/var-dumper": ">=4.2",
@@ -62,5 +67,6 @@
             "@php think service:discover",
             "@php think vendor:publish"
         ]
-    }
+    },
+    "minimum-stability": "dev"
 }

@@ -8,7 +8,7 @@ class Index extends BaseController
 {
     public function index()
     {
-        return view('form');
+        return view('index');
     }
 
     public function json()

@@ -3,6 +3,7 @@
 namespace app\controller;
 
 use app\BaseController;
+use think\facade\Env;
 
 class Index extends BaseController
 {

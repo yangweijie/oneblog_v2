@@ -27,6 +27,10 @@
         "debugbar": {
             "type": "path",
             "url": "libs/res/think-debugbar"
+        },
+        "liliuwei/thinkphp-jump": {
+            "type": "path",
+            "url": "libs/res/thinkphp-jump"
         }
     },
     "require": {
@@ -36,12 +40,14 @@
         "topthink/think-orm": "^3.0",
         "topthink/think-filesystem": "^2.0",
         "topthink/think-view": "^2.0",
-        "yangweijie/thinkphp-jump": "^1.6",
         "joanhey/adapterman": "^0.6.1",
         "spatie/ignition": "^1.11",
         "phpoption/phpoption": "^1.9",
         "vlucas/phpdotenv": "^5.5",
-        "yangweijie/debugbar": "dev-main"
+        "yangweijie/debugbar": "dev-main",
+        "mtdowling/cron-expression": "^1.2",
+        "guzzlehttp/guzzle": "7.9.x-dev",
+        "liliuwei/thinkphp-jump": "dev-main"
     },
     "require-dev": {
         "symfony/var-dumper": ">=4.2",

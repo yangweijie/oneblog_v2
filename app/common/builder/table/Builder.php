@@ -9,9 +9,9 @@
 
 namespace app\common\builder\table;
 
-use app\admin\model\Menu;
+use app\model\Menu;
 use app\common\builder\ZBuilder;
-use app\user\model\Role;
+use app\model\Role;
 use think\facade\Cache;
 use think\facade\Env;
 use think\facade\View;
@@ -618,7 +618,7 @@ class Builder extends ZBuilder
      */
     private function getDefaultUrl($type = '', $params = [])
     {
-        $url = $this->_module.'/'.$this->_controller.'/'.$type;
+        $url = $this->_controller.'/'.$type;
         $MenuModel = new Menu();
         $menu  = $MenuModel->where('url_value', $url)->find();
         if ($menu['params'] != '') {

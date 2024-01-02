@@ -130,8 +130,8 @@ class Menu extends Model
                 if ($menu['url_value'] != '' && ($menu['url_type'] == 'module_admin' || $menu['url_type'] == 'module_home')) {
                 	$menu['params'] = parse_url($menu['params']);
                     $url = explode('/', $menu['url_value']);
-                    $menu['controller'] = $url[1];
-                    $menu['action']     = $url[2];
+                    $menu['controller'] = $url[0];
+                    $menu['action']     = $url[1];
                     $menu['url_value']  = $menu['url_type'] == 'module_admin' ? admin_url($menu['url_value'], $menu['params']) : home_url($menu['url_value'], $menu['params']);
                 }
                 $menus[$key] = $menu;
@@ -224,15 +224,12 @@ class Menu extends Model
         if (!$location) {
             $map = [
                 ['pid', '<>', 0],
-                ['url_value', '=', strtolower($model.'/'.trim(preg_replace("/[A-Z]/", "_\\0", $controller), "_").'/'.$action)]
+                ['url_value', '=', strtolower(trim(preg_replace("/[A-Z]/", "_\\0", $controller), "_").'/'.$action)]
             ];
-
             // 当前操作对应的节点ID
             $curr_id = $id == '' ? self::where($map)->value('id') : $id;
-
             // 获取节点ID是所有父级节点
             $location = Tree::getParents(self::column('id,pid,title,url_value,params'), $curr_id);
-
             if ($check && empty($location)) {
                 throw new Exception('获取不到当前节点地址，可能未添加节点', 9001);
             }

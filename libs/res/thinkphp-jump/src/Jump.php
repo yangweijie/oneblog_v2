@@ -69,7 +69,6 @@ trait Jump
         } else {
             $response = Response::create($result, $type)->header($header);
         }
-
         throw new HttpResponseException($response);
     }
 
@@ -107,7 +106,6 @@ trait Jump
         } else {
             $response = Response::create($result, $type)->header($header);
         }
-
         throw new HttpResponseException($response);
     }
 
@@ -142,7 +140,7 @@ trait Jump
      * @param  string $url 跳转的URL表达式
      * @param  integer $code http code
      * @param  array $with 隐式传参
-     * @return void
+     * @return \think\response\Redirect
      */
     protected function redirect($url, $code = 302, $with = [])
     {

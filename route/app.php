@@ -37,6 +37,7 @@ Route::any('admin', function(){
     if(!defined('MODULE')||empty(MODULE)){
         define('MODULE', 'admin');
     }
+    define('ENTRANCE', 'admin');
     // 定义应用目录
     define('APP_PATH', __DIR__ . '/../app/');
     return app("\app\admin\\$action")->$method();

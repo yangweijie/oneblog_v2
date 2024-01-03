@@ -76,7 +76,7 @@ if (!function_exists('get_file_path')) {
      */
     function get_file_path($id = 0)
     {
-        $model = new \app\admin\model\Attachment;
+        $model = new \app\model\Attachment;
         $path = $model->getFilePath($id);
         if (!$path) {
             return config('app.public_static_path').'admin/img/none.png';
@@ -94,7 +94,7 @@ if (!function_exists('get_files_path')) {
      */
     function get_files_path($ids = [])
     {
-        $model = new \app\admin\model\Attachment;
+        $model = new \app\model\Attachment;
         $paths = $model->getFilePath($ids);
         return !$paths ? [] : $paths;
     }
@@ -109,7 +109,7 @@ if (!function_exists('get_thumb')) {
      */
     function get_thumb($id = 0)
     {
-        $model = new \app\admin\model\Attachment;
+        $model = new \app\model\Attachment;
         $path = $model->getThumbPath($id);
         if (!$path) {
             return config('app.public_static_path').'admin/img/none.png';
@@ -428,7 +428,7 @@ if (!function_exists('module_config')) {
             // 显示模块配置页面
             return action('admin/admin/moduleConfig');
         } elseif ($value === '') {
-            $model = new \app\admin\model\Module;
+            $model = new \app\model\Module;
             // 获取模块配置
             if (strpos($name, '.')) {
                 list($name, $item) = explode('.', $name);
@@ -437,7 +437,7 @@ if (!function_exists('module_config')) {
                 return $model->getConfig($name);
             }
         } else {
-            $model = new \app\admin\model\Module;
+            $model = new \app\model\Module;
             // 设置值
             return $model->setConfig($name, $value);
         }
@@ -467,7 +467,7 @@ if (!function_exists('plugin_config')) {
      */
     function plugin_config($name = '', $value = '')
     {
-        $plugin = new \app\admin\model\Plugin;
+        $plugin = new \app\model\Plugin;
         if ($value === '') {
             // 获取插件配置
             if (strpos($name, '.')) {
@@ -693,7 +693,7 @@ if (!function_exists('get_auth_node')) {
      */
     function get_auth_node($uid = 0, $group = '')
     {
-        $model = new \app\admin\model\Access;
+        $model = new \app\model\Access;
         return $model->getAuthNode($uid, $group);
     }
 }
@@ -709,7 +709,7 @@ if (!function_exists('check_auth_node')) {
      */
     function check_auth_node($uid = 0, $group = '', $node = 0)
     {
-        $model = new \app\admin\model\Access;
+        $model = new \app\model\Access;
         return $model->checkAuthNode($uid, $group, $node);
     }
 }
@@ -1059,7 +1059,7 @@ if (!function_exists('action_log')) {
             }
 
             // 查询行为,判断是否执行
-            $model = new \app\admin\model\Action;
+            $model = new \app\model\Action;
             $action_info = $model->where('module', $module)->getByName($action);
             if(!$action_info){
                 return false;
@@ -1110,7 +1110,7 @@ if (!function_exists('action_log')) {
             }
 
             // 保存日志
-            $model = new \app\admin\model\Log;
+            $model = new \app\model\Log;
             $model->create($data);
 
             if(!empty($action_info['rule'])){
@@ -1161,7 +1161,7 @@ if (!function_exists('parse_action')) {
         }
 
         // 查询行为信息
-        $model = new \app\admin\model\Action;
+        $model = new \app\model\Action;
         $info = $model->where($map)->find();
         if(!$info || $info['status'] != 1){
             return false;
@@ -1213,7 +1213,7 @@ if (!function_exists('execute_action')) {
                 ['user_id', '=', $user_id],
                 ['create_time', '>', request()->time() - intval($rule['cycle']) * 3600],
             ];
-            $model = new \app\admin\model\Log;
+            $model = new \app\model\Log;
             $exec_count = $model->where($map)->count();
             if($exec_count > $rule['max']){
                 continue;
@@ -1242,7 +1242,7 @@ if (!function_exists('get_location')) {
      */
     function get_location($id = '', $del_last_url = false, $check = true)
     {
-        $menuModel = new app\admin\model\Menu;
+        $menuModel = new app\model\Menu;
         $location = $menuModel->getLocation($id, $del_last_url, $check);
         return $location;
     }

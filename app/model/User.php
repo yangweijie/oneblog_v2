@@ -10,7 +10,7 @@
 namespace app\model;
 
 use think\Model;
-use app\user\model\Role as RoleModel;
+use app\model\Role as RoleModel;
 use think\facade\Db;
 
 /**

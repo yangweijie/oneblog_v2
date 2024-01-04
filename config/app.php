@@ -36,7 +36,7 @@ return [
     'show_error_msg'   => true,
 
     // 后台公共模板
-    'admin_base_layout'  => app_path() . 'admin/view/layout.html',
+    'admin_base_layout'  => root_path() . '/view/admin/layout.html',
 
     // 插件目录路径
     'plugin_path'        => root_path().'extend/plugins/',

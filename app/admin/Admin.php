@@ -34,6 +34,9 @@ class Admin extends Common
      */
     protected function initialize()
     {
+        if(!defined('ENTRANCE')){
+            define('ENTRANCE', 'admin');
+        }
         parent::initialize();
         // 是否拒绝ie浏览器访问
         if (config('system.deny_ie') && get_browser_type() == 'ie') {

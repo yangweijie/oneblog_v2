@@ -25,6 +25,10 @@ Route::any('admin', function(){
     $path_array = explode('/', $path);
     $action = $path_array[0];
     $method = $path_array[1];
+    $method = strstr($method, '?', true);
+    if($view_suffix = config('view.view_suffix')){
+        $method = str_replace(".{$view_suffix}", '', $method);
+    }
     $request->setController(ucfirst($action));
     $request->setAction($method);
     // 控制器分层

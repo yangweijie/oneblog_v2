@@ -1345,7 +1345,7 @@ if (!function_exists('admin_url')) {
     function admin_url($url = '', $vars = [], $suffix = true, $domain = false) {
         $url = url($url, $vars, $suffix, $domain);
         if (defined('ENTRANCE') && ENTRANCE == 'admin') {
-            return $url;
+            return str_starts_with($url, 'admin')?$url: '/admin'.$url;
         } else {
             return preg_replace('/\/index.php/', '/'.ADMIN_FILE, $url);
         }

@@ -25,7 +25,7 @@ Route::any('admin', function(){
     $path_array = explode('/', $path);
     $action = $path_array[0];
     $method = $path_array[1];
-    $method = strstr($method, '?', true);
+    $method = \think\helper\Str::contains($method, '?')?  strstr($method, '?', true) : $method;
     if($view_suffix = config('view.view_suffix')){
         $method = str_replace(".{$view_suffix}", '', $method);
     }

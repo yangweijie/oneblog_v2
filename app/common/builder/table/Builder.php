@@ -635,7 +635,7 @@ class Builder extends ZBuilder
             $params = array_filter($params, function($v){return $v !== '';});
         }
 
-        return $menu['url_type'] == 'module_home' ? home_url($url, $params) : url($url, $params);
+        return $menu['url_type'] == 'module_home' ? home_url($url, $params) : admin_url($url, $params);
     }
 
     /**

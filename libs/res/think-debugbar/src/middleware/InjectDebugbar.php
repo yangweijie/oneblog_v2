@@ -28,8 +28,9 @@ class InjectDebugbar
         $this->debugbar->init();
 
         $response = $next($request);
-
-        $this->debugbar->inject($response);
+        if(!$request->isAjax() && !$request->isOptions()){
+            $this->debugbar->inject($response);
+        }
 
         return $response;
     }

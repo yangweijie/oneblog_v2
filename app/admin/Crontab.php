@@ -4,6 +4,7 @@ namespace app\admin;
 
 use app\common\builder\ZBuilder;
 use app\model\Crontab as CrontabModel;
+use Cron\CronExpression;
 
 class Crontab extends Admin
 {
@@ -69,8 +70,8 @@ class Crontab extends Admin
             }
         }
 
-        $checkSchedule_url = url('checkSchedule');
-        $getScheduleFuture_url = url('getScheduleFuture');
+        $checkSchedule_url = admin_url('checkSchedule');
+        $getScheduleFuture_url = admin_url('getScheduleFuture');
 
         $js = <<<EOF
             <script type="text/javascript">
@@ -141,7 +142,7 @@ EOF;
             if(true !== $result) $this->error($result);
             $CrontabModel = new CrontabModel();
             if ($CrontabModel::update($data)) {
-                return $this->success('编辑成功',cookie('__forward__'));
+                $this->success('编辑成功',cookie('__forward__'));
             } else {
                 $this->error('编辑失败');
             }
@@ -255,9 +256,9 @@ EOF;
         $schedule = input('post.schedule', '');
         $result = $this->validate(['schedule'=>$schedule], 'Crontab.schedule');
         if ($result === true) {
-            return ['status' => true];
+            return json(['status' => true]);
         } else {
-            return ['status' => false];
+            return json(['status' => false]);
         }
     }
 

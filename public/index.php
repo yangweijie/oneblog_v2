@@ -24,11 +24,8 @@ if(IS_VERCEL){
 $http = $app->setEnvName(IS_VERCEL?'vercel':'')->http;
 
 $response = $http->run();
-// cli 模式关闭路由
-if (PHP_SAPI == 'cli'){
-    ;
-//    $app->route(false);
-}
+
+define('IS_WIN', strtoupper(substr(PHP_OS,0,3))==='WIN');
 
 
 $response->send();

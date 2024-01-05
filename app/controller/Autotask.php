@@ -93,7 +93,7 @@ class Autotask extends BaseController
                 switch ($value['type']) {
                     case 'url':
                         if (substr($crontab['content'], 0, 1) == "/") {// 本地项目URL
-                            $request = shell_exec('/usr/local/bin/php ' . Env::get('root_path').'public/index.php ' . $crontab['content'] . ' 2>&1');
+                            $request = shell_exec(Env::get('php_bin', '/usr/local/bin/php').' ' . Env::get('root_path').'public/index.php ' . $crontab['content'] . IS_WIN? ' >NUL' : ' 2>&1');
                             $this->saveLog('url', $value['id'], $value['title'], 1, $request);
                         } else {// 远程URL
                             try {

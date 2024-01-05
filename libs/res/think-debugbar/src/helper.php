@@ -1,4 +1,7 @@
 <?php
+
+use think\facade\Log;
+
 if (!function_exists('debugbar')) {
     /**
      * Get the Debugbar instance
@@ -21,6 +24,7 @@ if (!function_exists('trace')) {
     function trace($log, string $level = 'debug')
     {
         debugbar()->addMessage($log, $level);
+        Log::record($log, $level);
     }
 }
 

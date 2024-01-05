@@ -20,6 +20,7 @@ class Index extends BaseController
 
     public function hello($name = 'ThinkPHP8')
     {
+        trace($name);
         return 'hello,' . $name;
     }
 }

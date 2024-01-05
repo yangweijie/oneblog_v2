@@ -21,11 +21,16 @@ $app = (new App());
 if(IS_VERCEL){
 	$app->setRuntimePath(sys_get_temp_dir().DIRECTORY_SEPARATOR);
 }
-$http = $app->setEnvName(IS_VERCEL?'vercel':'')->http;
-
+$name = IS_VERCEL?'vercel':'';
+define('IS_WIN', strtoupper(substr(PHP_OS,0,3))==='WIN');
+if($app->request->isCli()){
+//    $name.= '_cli';
+    $_SERVER['REQUEST_URI'] = $_SERVER['argv'][1]??'';
+}
+$http = $app->setEnvName($name)->http;
+//$app->request->server('REQUEST_URI', $_SERVER['argv'][1]);
 $response = $http->run();
 
-define('IS_WIN', strtoupper(substr(PHP_OS,0,3))==='WIN');
 
 
 $response->send();

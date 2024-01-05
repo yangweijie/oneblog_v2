@@ -31,6 +31,7 @@ Route::any('admin', function(){
     }
     $request->setController(ucfirst($action));
     $request->setAction($method);
+//    $request->withInput(http_build_query($_GET));
     // 控制器分层
     Route::bind('\app\admin');
     config(['view_dir_name'=>'view'.DIRECTORY_SEPARATOR.'admin'], 'view');

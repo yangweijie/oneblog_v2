@@ -6,7 +6,7 @@
         <li>作者：{$info.uid|get_username}</li>
         <li>时间：发表于 {$info.create_time|date='Y-m-d H:i'}</li>
         <neq name="info.cate_title" value="">
-        <li>分类：<a href="{:url('category/'.$info['cate_title'])}">{$info.cate_title}</a></li>
+        <li>分类：<a href="{:url('category/'.$info['cate_title'])}">{$info.cate_title|default=''}</a></li>
         </neq>
     </ul>
     <div class="post-content">{$info.content|raw}</div>

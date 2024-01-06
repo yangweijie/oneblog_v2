@@ -87,7 +87,7 @@ class User extends Model
                 $uid = $user['id'];
 
                 // 更新登录信息
-                $user['last_login_time'] = request()->time();
+                $user['last_login_time'] = date('Y-m-d H:i:s', request()->time());
                 $user['last_login_ip']   = ip2long(request()->ip());
                 if ($user->save()) {
                     // 自动登录

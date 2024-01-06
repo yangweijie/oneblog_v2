@@ -1,0 +1,79 @@
+<style>
+	h1, h2, h3, h4, h5, h6 {
+		font-weight: 400;
+	}
+
+	fieldset {
+		margin: 0;
+		border: 1px solid #e6e6e6;
+		padding: 10px 20px 5px 20px;
+	}
+	fieldset legend {
+		color: #666;
+		padding: 0 10px;
+		font-size: 14px;
+		margin-bottom: 0;
+	}
+	.notselect {
+		user-select: none;
+		-ms-user-select: none;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+	}
+
+	.margin-top-0 {
+		margin-top: 0 !important;
+	}
+	.block{
+		margin-bottom: 0 !important;
+	}
+	.border-0 {
+		border: 0 !important;
+	}
+	.layui-code {
+		position: relative;
+		margin: 0 !important;
+		margin-top: -32px !important;
+		padding: 15px;
+		line-height: 20px;
+		border: 1px solid #ddd;
+		border-left-width: 6px;
+		background-color: #F2F2F2;
+		color: #333;
+		font-family: Courier New;
+		font-size: 12px;
+	}
+	.layui-code p{
+		margin:0;
+		padding: 0;
+	}
+	.margin-top-0 {
+		margin-top: 0 !important;
+	}
+	.border-0 {
+		border: 0 !important;
+	}
+	.margin-top-10 {
+		margin-top: 10px !important;
+	}
+	.color-desc {
+		color: #999 !important;
+	}
+
+	.margin-bottom-15 {
+		margin-bottom: 15px !important;
+	}
+
+	layui-card-body {
+		position: relative;
+		padding: 10px 15px;
+		line-height: 24px;
+	}
+</style>
+
+<div class="layui-code border-0">
+	<h4 class="color-desc margin-top-10 notselect">守护进程运行状态</h4>
+	<span class="text-success"><info>{$msg|raw}</info></span>
+	<h4 class="color-desc margin-top-10 notselect">配置定时任务来检查并启动进程（建议每分钟执行）</h4>
+	<span>{$command}</span>
+</div>

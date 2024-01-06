@@ -88,22 +88,22 @@
     <script>
         // url
         var dolphin = {
-            'top_menu_url': '{:url("admin/ajax/getSidebarMenu")}',
-            'theme_url': '{:url("admin/ajax/setTheme")}',
-            'jcrop_upload_url': '{$jcrop_upload_url ? $jcrop_upload_url : url("admin/attachment/upload", ["dir" => "images", "from" => "jcrop", "module" => MODULE])}',
-            'editormd_upload_url': '{$editormd_upload_url ? $editormd_upload_url : url("admin/attachment/upload", ["dir" => "images", "from" => "editormd", "module" => MODULE])}',
+            'top_menu_url': '{:admin_url("ajax/getSidebarMenu")}',
+            'theme_url': '{:admin_url("ajax/setTheme")}',
+            'jcrop_upload_url': '{$jcrop_upload_url ? $jcrop_upload_url : admin_url("attachment/upload", ["dir" => "images", "from" => "jcrop", "module" => MODULE])}',
+            'editormd_upload_url': '{$editormd_upload_url ? $editormd_upload_url : admin_url("attachment/upload", ["dir" => "images", "from" => "editormd", "module" => MODULE])}',
             'editormd_mudule_path': '__LIBS__/editormd/lib/',
-            'ueditor_upload_url': '{$ueditor_upload_url ? $ueditor_upload_url : url("admin/attachment/upload", ["dir" => "images", "from" => "ueditor", "module" => MODULE])}',
-            'wangeditor_upload_url': '{$wangeditor_upload_url ? $wangeditor_upload_url : url("admin/attachment/upload", ["dir" => "images", "from" => "wangeditor", "module" => MODULE])}',
+            'ueditor_upload_url': '{$ueditor_upload_url ? $ueditor_upload_url : admin_url("admin_urlattachment/upload", ["dir" => "images", "from" => "ueditor", "module" => MODULE])}',
+            'wangeditor_upload_url': '{$wangeditor_upload_url ? $wangeditor_upload_url : admin_url("attachment/upload", ["dir" => "images", "from" => "wangeditor", "module" => MODULE])}',
             'wangeditor_emotions': "__LIBS__/wang-editor/emotions.data",
-            'ckeditor_img_upload_url': '{$ckeditor_img_upload_url ? $ckeditor_img_upload_url : url("admin/attachment/upload", ["dir" => "images", "from" => "ckeditor", "module" => MODULE])}',
+            'ckeditor_img_upload_url': '{$ckeditor_img_upload_url ? $ckeditor_img_upload_url : admin_url("attachment/upload", ["dir" => "images", "from" => "ckeditor", "module" => MODULE])}',
             'WebUploader_swf': '__LIBS__/webuploader/Uploader.swf',
-            'file_upload_url': '{$file_upload_url ? $file_upload_url : url("admin/attachment/upload", ["dir" => "files", "module" => MODULE])}',
-            'image_upload_url': '{$image_upload_url ? $image_upload_url : url("admin/attachment/upload", ["dir" => "images", "module" => MODULE])}',
-            'upload_check_url': '{$upload_check_url ? $upload_check_url : url("admin/ajax/check")}',
-            'get_level_data': '{:url("admin/ajax/getLevelData")}',
-            'quick_edit_url': '{$quick_edit_url ? $quick_edit_url : url("quickEdit")}',
-            'aside_edit_url': '{$aside_edit_url ? $aside_edit_url : url("admin/system/quickEdit")}',
+            'file_upload_url': '{$file_upload_url ? $file_upload_url : admin_url("attachment/upload", ["dir" => "files", "module" => MODULE])}',
+            'image_upload_url': '{$image_upload_url ? $image_upload_url : admin_url("attachment/upload", ["dir" => "images", "module" => MODULE])}',
+            'upload_check_url': '{$upload_check_url ? $upload_check_url : admin_url("ajax/check")}',
+            'get_level_data': '{:admin_url("ajax/getLevelData")}',
+            'quick_edit_url': '{$quick_edit_url ? $quick_edit_url : admin_url("quickEdit")}',
+            'aside_edit_url': '{$aside_edit_url ? $aside_edit_url : admin_url("system/quickEdit")}',
             'triggers': {:json_encode(isset($field_triggers) ? $field_triggers : [])}, // 触发器集合
             'field_hide': '{$field_hide|default=""}', // 需要隐藏的字段
             'field_values': '{$field_values|default=""}',
@@ -115,7 +115,7 @@
             '_filter_content': '{$Request.param._filter_content == '' ? (isset($_filter_content) ? $_filter_content : "") : $Request.param._filter_content}',
             '_field_display': '{$Request.param._field_display ? $Request.param._field_display : (isset($_field_display) ? $_field_display : "")}',
             '_field_clear': {:json_encode(isset($field_clear) ? $field_clear : [])},
-            'get_filter_list': '{:url("admin/ajax/getFilterList")}',
+            'get_filter_list': '{:admin_url("ajax/getFilterList")}',
             'curr_url': '{:url("", $Request.route)}',
             'curr_params': {:json_encode($Request.param)},
             'layer': {:json_encode(config("zbuilder.pop"))}
@@ -276,18 +276,18 @@
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li class="dropdown-header">{:session('user_auth.username')} ({:session('user_auth.role_name')})</li>
                         <li>
-                            <a tabindex="-1" href="{:url('admin/index/profile')}">
+                            <a tabindex="-1" href="{:admin_url('admin/index/profile')}">
                                 <i class="si si-settings pull-right"></i>个人设置
                             </a>
                         </li>
                         <li>
-                            <a tabindex="-1" href="{:url('admin/message/index')}">
+                            <a tabindex="-1" href="{:admin_url('admin/message/index')}">
                                 <i class="si si-envelope-open pull-right"></i><span class="badge badge-primary pull-right">{$_message|default=0}</span>消息中心
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a tabindex="-1" href="{:url('user/publics/signout')}">
+                            <a tabindex="-1" href="{:admin_url('user/publics/signout')}">
                                 <i class="si si-logout pull-right"></i>退出帐号
                             </a>
                         </li>
@@ -295,7 +295,7 @@
                 </div>
             </li>
             <li>
-                <a class="btn btn-default ajax-get" href="{:url('admin/index/wipeCache')}" data-toggle="tooltip" data-placement="bottom" data-original-title="清空缓存">
+                <a class="btn btn-default ajax-get" href="{:admin_url('index/wipeCache')}" data-toggle="tooltip" data-placement="bottom" data-original-title="清空缓存">
                     <i class="fa fa-trash"></i>
                 </a>
             </li>

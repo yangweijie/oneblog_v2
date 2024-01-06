@@ -9,6 +9,7 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 use think\facade\Route;
+use think\helper\Str;
 
 Route::get('think', function () {
     return 'hello,ThinkPHP6!';
@@ -20,12 +21,17 @@ Route::get('hello/:name', 'index/hello');
 Route::any('admin', function(){
     $request = request();
     $url = $request->server('REQUEST_URI');
-    $path = str_ireplace('/admin/', '', $url);
+    $path = str_ireplace(['/admin/', '/admin'], ['', ''], $url);
     $request->setPathinfo($path);
-    $path_array = explode('/', $path);
-    $action = $path_array[0];
-    $method = $path_array[1];
-    $method = \think\helper\Str::contains($method, '?')?  strstr($method, '?', true) : $method;
+    if($path){
+        $path_array = explode('/', $path);
+        $action = $path_array[0];
+        $method = $path_array[1];
+    }else{
+        $action = 'index';
+        $method = 'index';
+    }
+    $method = Str::contains($method, '?')?  strstr($method, '?', true) : $method;
     if($view_suffix = config('view.view_suffix')){
         $method = str_replace(".{$view_suffix}", '', $method);
     }

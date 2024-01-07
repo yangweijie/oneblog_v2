@@ -15,7 +15,7 @@ namespace think;
 require __DIR__ . '/../vendor/autoload.php';
 define('IS_VERCEL', $_ENV['VERCEL']??0);
 // 定义后台入口文件
-define('ADMIN_FILE', 'admin.php');
+define('ADMIN_FILE', 'index.php');
 // 执行HTTP应用并响应
 $app = (new App());
 if(IS_VERCEL){

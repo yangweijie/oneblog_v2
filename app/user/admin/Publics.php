@@ -95,7 +95,7 @@ class Publics extends Common
     private function jumpUrl()
     {
         if (session('user_auth.role') == 1) {
-            $this->success('登录成功', url('admin/index/index'));
+            $this->success('登录成功1', admin_url('admin/index/index'));
         }
 
         $default_module = RoleModel::where('id', session('user_auth.role'))->value('default_module');
@@ -105,7 +105,7 @@ class Publics extends Common
         }
 
         if ($menu['url_type'] == 'link') {
-            $this->success('登录成功', $menu['url_value']);
+            $this->success('登录成功2', admin_url($menu['url_value']));
         }
 
         $menu_url = explode('/', $menu['url_value']);
@@ -127,7 +127,7 @@ class Publics extends Common
         if ($url == '') {
             $this->error('权限不足');
         } else {
-            $this->success('登录成功', $url);
+            $this->success('登录成功3', admin_url($url));
         }
     }
 

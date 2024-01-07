@@ -1352,11 +1352,16 @@ if (!function_exists('admin_url')) {
      */
     function admin_url($url = '', $vars = [], $suffix = true, $domain = false) {
         $url = url($url, $vars, $suffix, $domain);
-        if (defined('ENTRANCE') && ENTRANCE == 'admin') {
-            return $url;
-        } else {
-            return preg_replace('/\/index.php/', '/'.ADMIN_FILE, $url);
+        $url = ltrim($url, '/index.php');
+        $parse_arr = explode('/', ltrim($url, '/'));
+        if(count($parse_arr) == 3){
+            if(\think\helper\Str::startsWith($url, '/')){
+                $url = '/admin'.$url;
+            }else{
+                $url = '/admin/'.$url;
+            }
         }
+        return $url;
     }
 }
 

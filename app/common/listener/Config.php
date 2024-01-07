@@ -14,6 +14,7 @@ use app\admin\model\Module as ModuleModel;
 use think\facade\Env;
 use think\facade\Request;
 use think\facade\App;
+use think\helper\Str;
 
 /**
  * 初始化配置信息行为
@@ -32,11 +33,18 @@ class Config
     {
         // 如果是安装操作，直接返回
 //        if(defined('BIND_MODULE') && BIND_MODULE === 'install') return;
-
         $request = request();
         $request_uri = $_SERVER['REQUEST_URI'];
         $script_name = $_SERVER['SCRIPT_NAME'];
-        $module = explode('/', ltrim(str_ireplace($script_name, '', $request_uri), '/'))[0];
+        $path = ltrim(str_ireplace($script_name, '', $request_uri), '/');
+        if(Str::startsWith($path, 'admin')){
+            if(!defined('ENTRANCE')){
+                define('ENTRANCE', 'admin');
+            }
+            $module = explode('/', $path)[1]??'';
+        }else{
+            $module = explode('/', $path)[0];
+        }
         define('MODULE', $module);
         $base_file = Request::baseFile();
         $base_dir  = substr($base_file, 0, strripos($base_file, '/') + 1);
@@ -78,10 +86,8 @@ class Config
 
         // 如果定义了入口为admin，则修改默认的访问控制器层
         if(defined('ENTRANCE') && ENTRANCE == 'admin') {
-            define('ADMIN_FILE', substr($base_file, strripos($base_file, '/') + 1));
-
             if (MODULE == '') {
-                header("Location: ".$base_file.'/admin', true, 302);exit();
+                header("Location: ".$base_file.'/admin/admin/index/index', true, 302);exit();
             }
             if (!in_array($module, config('module.default_controller_layer'))) {
                 // 修改默认访问控制器层

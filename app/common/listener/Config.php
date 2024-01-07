@@ -31,6 +31,7 @@ class Config
      */
     public function handle($event)
     {
+        define('APP_PATH', root_path().DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR);
         // 如果是安装操作，直接返回
 //        if(defined('BIND_MODULE') && BIND_MODULE === 'install') return;
         $request = request();

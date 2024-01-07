@@ -21,7 +21,7 @@
                     </li>
                     {/volist}
                     <li {eq name="tab_nav.curr_tab" value="module-sort"}class="active"{/eq}>
-                        <a href="{:url('', ['group' => 'module-sort'])}">模块排序</a>
+                        <a href="{:admin_url('', ['group' => 'module-sort'])}">模块排序</a>
                     </li>
                     <li class="pull-right">
                         <ul class="block-options push-10-t push-10-r">
@@ -66,7 +66,7 @@
                             <div class="col-sm-12">
                                 <form action="{$Request.url}" method="get">
                                 <div class="toolbar-btn-action">
-                                    <a title="新增" class="btn btn-primary" href="{:url('add', ['module' => $Request.param.group])}"><i class="fa fa-plus-circle"></i> 新增</a>
+                                    <a title="新增" class="btn btn-primary" href="{:admin_url('add', ['module' => $Request.param.group])}"><i class="fa fa-plus-circle"></i> 新增</a>
                                     <button title="保存" type="button" class="btn btn-default disabled" id="save" disabled><i class="fa fa-check-circle-o"></i> 保存节点</button>
                                     <button title="隐藏禁用节点" type="button" class="btn btn-danger" id="hide_disable"><i class="fa fa-eye-slash"></i> 隐藏禁用节点</button>
                                     <button title="显示禁用节点" type="button" class="btn btn-info" id="show_disable"><i class="fa fa-eye"></i> 显示禁用节点</button>
@@ -86,7 +86,7 @@
                         {/notempty}
 
                         {notempty name="modules"}
-                        <form action="{:url('')}" method="post" name="sort-form" class="sort-form">
+                        <form action="{:admin_url('')}" method="post" name="sort-form" class="sort-form">
                             <button title="保存" type="submit" class="btn btn-success push-10 ajax-post" target-form="sort-form">保存排序</button>
                             <div class="row">
                                 <div class="col-md-12">
@@ -123,7 +123,7 @@
         // 保存节点
         $('#save').click(function(){
             Dolphin.loading();
-            $.post("{:url('save')}", {menus: $('#menu_list').nestable('serialize')}, function(data) {
+            $.post("{:admin_url('save')}", {menus: $('#menu_list').nestable('serialize')}, function(data) {
                 Dolphin.loading('hide');
                 if (data.code) {
                     $('#save').removeClass('btn-success').addClass('btn-default disabled');
@@ -163,7 +163,7 @@
         $('.dd3-content').delegate('.disable', 'click', function(){
             var self     = $(this);
             var ids      = self.data('ids');
-            var ajax_url = '{:url("disable", ["table" => "admin_menu"])}';
+            var ajax_url = '{:admin_url("disable", ["table" => "admin_menu"])}';
             Dolphin.loading();
             $.post(ajax_url, {ids:ids}, function(data) {
                 Dolphin.loading('hide');
@@ -183,7 +183,7 @@
         $('.dd3-content').delegate('.enable', 'click', function(){
             var self     = $(this);
             var ids      = self.data('ids');
-            var ajax_url = '{:url("enable", ["table" => "admin_menu"])}';
+            var ajax_url = '{:admin_url("enable", ["table" => "admin_menu"])}';
             Dolphin.loading();
             $.post(ajax_url, {ids:ids}, function(data) {
                 Dolphin.loading('hide');

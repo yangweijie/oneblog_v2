@@ -15,6 +15,7 @@ namespace think\app;
 use Closure;
 use think\App;
 use think\exception\HttpException;
+use think\helper\Str;
 use think\Request;
 use think\Response;
 
@@ -101,7 +102,19 @@ class MultiApp
                 $path = $this->app->request->pathinfo();
                 $map  = $this->app->config->get('app.app_map', []);
                 $deny = $this->app->config->get('app.deny_app_list', []);
-                $name = current(explode('/', $path));
+                if(Str::startsWith($path, 'admin')){
+                    $parse_arr = explode('/', $path);
+                    array_shift($parse_arr);
+                    if($parse_arr){
+                        $name = $parse_arr[0];
+                        $path = implode('/', $parse_arr);
+                    }else{
+                        $name = 'admin';
+                        $path = 'admin/index/index';
+                    }
+                }else{
+                    $name = current(explode('/', $path));
+                }
                 if (strpos($name, '.')) {
                     $name = strstr($name, '.', true);
                 }
@@ -131,7 +144,6 @@ class MultiApp
                         }
                     }
                 }
-
                 if ($name) {
                     $this->app->request->setRoot('/' . $name);
                     $this->app->request->setPathinfo(strpos($path, '/') ? ltrim(strstr($path, '/'), '/') : '');

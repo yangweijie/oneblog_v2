@@ -156,7 +156,7 @@ class Admin extends Common
             return $uid;
         } else {
             // 未登录
-            $this->redirect('/admin.php/user/publics/signin');
+            $this->redirect('/admin/user/publics/signin');
         }
     }
 

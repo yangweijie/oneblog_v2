@@ -56,7 +56,7 @@ class Menu extends Admin
         $list_group = MenuModel::getGroup();
         foreach ($list_group as $key => $value) {
             $tab_list[$key]['title'] = $value;
-            $tab_list[$key]['url']  = url('index', ['group' => $key]);
+            $tab_list[$key]['url']  = admin_url('index', ['group' => $key]);
         }
 
         // 模块排序
@@ -127,7 +127,7 @@ class Menu extends Admin
         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')
             ->setPageTitle('新增节点')
-            ->addLinkage('module', '所属模块', '', ModuleModel::getModule(), $module, url('ajax/getModuleMenus'), 'pid')
+            ->addLinkage('module', '所属模块', '', ModuleModel::getModule(), $module, admin_url('ajax/getModuleMenus'), 'pid')
             ->addFormItems([
                 ['select', 'pid', '所属节点', '所属上级节点', MenuModel::getMenuTree(0, '', $module), $pid],
                 ['text', 'title', '节点标题'],
@@ -209,7 +209,7 @@ class Menu extends Admin
         return ZBuilder::make('form')
             ->setPageTitle('编辑节点')
             ->addFormItem('hidden', 'id')
-            ->addLinkage('module', '所属模块', '', ModuleModel::getModule(), '', url('ajax/getModuleMenus'), 'pid')
+            ->addLinkage('module', '所属模块', '', ModuleModel::getModule(), '', admin_url('ajax/getModuleMenus'), 'pid')
             ->addFormItem('select', 'pid', '所属节点', '所属上级节点', MenuModel::getMenuTree(0, '', $info['module']))
             ->addFormItem('text', 'title', '节点标题')
             ->addFormItem('radio', 'url_type', '链接类型', '', ['module_admin' => '模块链接(后台)', 'module_home' => '模块链接(前台)', 'link' => '普通链接'], 'module_admin')
@@ -462,7 +462,7 @@ class Menu extends Admin
                     $result .= '<span class="link"><i class="fa fa-link"></i> '.$value['url_value'].'</span>';
                 }
                 $result .= '<div class="action">';
-                $result .= '<a href="'.url('add', ['module' => $value['module'], 'pid' => $value['id']]).'" data-toggle="tooltip" data-original-title="新增子节点"><i class="list-icon fa fa-plus fa-fw"></i></a><a href="'.url('edit', ['id' => $value['id']]).'" data-toggle="tooltip" data-original-title="编辑"><i class="list-icon fa fa-pencil fa-fw"></i></a>';
+                $result .= '<a href="'.admin_url('add', ['module' => $value['module'], 'pid' => $value['id']]).'" data-toggle="tooltip" data-original-title="新增子节点"><i class="list-icon fa fa-plus fa-fw"></i></a><a href="'.url('edit', ['id' => $value['id']]).'" data-toggle="tooltip" data-original-title="编辑"><i class="list-icon fa fa-pencil fa-fw"></i></a>';
                 if ($value['status'] == 0) {
                     // 启用
                     $result .= '<a href="javascript:void(0);" data-ids="'.$value['id'].'" class="enable" data-toggle="tooltip" data-original-title="启用"><i class="list-icon fa fa-check-circle-o fa-fw"></i></a>';
@@ -470,7 +470,7 @@ class Menu extends Admin
                     // 禁用
                     $result .= '<a href="javascript:void(0);" data-ids="'.$value['id'].'" class="disable" data-toggle="tooltip" data-original-title="禁用"><i class="list-icon fa fa-ban fa-fw"></i></a>';
                 }
-                $result .= '<a href="'.url('delete', ['id' => $value['id'], 'table' => 'admin_menu']).'" data-toggle="tooltip" data-original-title="删除" class="ajax-get confirm"><i class="list-icon fa fa-times fa-fw"></i></a></div>';
+                $result .= '<a href="'.admin_url('delete', ['id' => $value['id'], 'table' => 'admin_menu']).'" data-toggle="tooltip" data-original-title="删除" class="ajax-get confirm"><i class="list-icon fa fa-times fa-fw"></i></a></div>';
                 $result .= '</div>';
 
                 if ($max_level == 0 || $curr_level != $max_level) {

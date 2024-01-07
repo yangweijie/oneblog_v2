@@ -1330,6 +1330,7 @@ if (!function_exists('home_url')) {
      */
     function home_url($url = '', $vars = [], $suffix = true, $domain = false) {
         $url = url($url, $vars, $suffix, $domain);
+        return  $url;
         if (defined('ENTRANCE') && ENTRANCE == 'admin') {
             $base_file = request()->baseFile();
             $base_file = substr($base_file, strripos($base_file, '/') + 1);

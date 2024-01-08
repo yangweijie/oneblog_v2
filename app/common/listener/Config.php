@@ -29,7 +29,7 @@ class Config
      * @access public
      * @return void
      */
-    public function handle($event)
+    public function handle()
     {
         define('APP_PATH', root_path().DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR);
         // 如果是安装操作，直接返回
@@ -46,7 +46,7 @@ class Config
         }else{
             $module = explode('/', $path)[0];
         }
-        define('MODULE', $module);
+        define('MODULE', $module?:'index');
         $base_file = Request::baseFile();
         $base_dir  = substr($base_file, 0, strripos($base_file, '/') + 1);
         if(!defined('PUBLIC_PATH'))

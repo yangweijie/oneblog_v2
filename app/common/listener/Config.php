@@ -50,7 +50,7 @@ class Config
         $base_file = Request::baseFile();
         $base_dir  = substr($base_file, 0, strripos($base_file, '/') + 1);
         if(!defined('PUBLIC_PATH'))
-            define('PUBLIC_PATH', $base_dir);
+            define('PUBLIC_PATH', IS_VERCEL? str_ireplace('/api', '', $base_dir) :$base_dir);
 
         // 视图输出字符串内容替换
         $view_replace_str = [

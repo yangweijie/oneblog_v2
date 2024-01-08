@@ -4,6 +4,10 @@
 
 ## 常见问题
 
+### 如何部署到生产
+
+`vercel --prod`
+
 ### vercel 环境有什么特点
 
 运行在 aws function里

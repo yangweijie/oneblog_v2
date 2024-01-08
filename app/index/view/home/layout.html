@@ -94,10 +94,10 @@
                         <h3 class="widget-title">功能</h3>
                         <ul class="widget-list">
                         {if condition="is_signin()"}
-                            <li class="last"><a href="/admin.php/admin/index/index">进入后台 (admin)</a></li>
+                            <li class="last"><a href="{:admin_url('admin/index/index')}">进入后台 (admin)</a></li>
                             <li><a class="exit" href="/admin.php/user/publics/signout">登出</a></li>
                         {else /}
-                            <li><a href="/admin.php/user/publics/signin">登录</a></li>
+                            <li><a href="{:admin_url('user/publics/signin')}">登录</a></li>
                         {/if}
                             <!-- <li><a href="/feed">文章 RSS</a></li> -->
                         </ul>
